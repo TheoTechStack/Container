@@ -1,0 +1,30 @@
+# Use the official ASP.NET Core Runtime image as a base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+# Use the official ASP.NET Core SDK image for building
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# WORKDIR /app
+# EXPOSE 80
+
+WORKDIR /src
+
+# Layer to validate since layers are being cached when re-build
+# Need to be considerate about a section you need to build on
+# Copy Sln file and csproj (caching will be based on the two)
+
+COPY  ./WebApplication1.sln ./  # copy to the root dir
+COPY ./WebApplication1.csproj ./ # since there is no sub-folder for csproj use same root
+
+# The files can be cached , it be changed based on the packages
+RUN dotnet restore
+COPY . . # Copy all the files and to /src/
+RUN dotnet publish ./WebApplication1.csproj -c Release -o /app/ # bundles eveything and prerp for server (published dlls in app)
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app .  /app#instead of copying from local we getting from build(what has been published) then copy to working dir
+EXPOSE 80
+EXPOSE 443
+ENTRYPOINT [ "dotnet", "WebApplication1.dll" ] # When you start a container user the dll
+
+
+ 

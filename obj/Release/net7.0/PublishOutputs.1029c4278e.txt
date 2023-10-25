@@ -1,0 +1,7 @@
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/WebApplication1
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/appsettings.Development.json
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/appsettings.json
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/WebApplication1.dll
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/WebApplication1.deps.json
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/WebApplication1.runtimeconfig.json
+/Users/theoramalatso/CODE/WEBAPP/WebApplication1/output/WebApplication1.pdb
